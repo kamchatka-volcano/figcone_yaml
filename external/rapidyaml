@@ -1,0 +1,21 @@
+include(FetchContent)
+Set(FETCHCONTENT_QUIET FALSE)
+
+if (NOT TARGET rapidyaml AND NOT rapidyaml_FOUND)
+    FetchContent_Declare(rapidyaml
+            URL https://github.com/biojppm/rapidyaml/releases/download/v0.4.1/rapidyaml-0.4.1.hpp
+            DOWNLOAD_NO_EXTRACT ON
+            DOWNLOAD_NAME ryml_all.hpp)
+    FetchContent_MakeAvailable(rapidyaml)
+    add_library(rapidyaml INTERFACE)
+    target_include_directories(
+        rapidyaml
+        INTERFACE
+        $<BUILD_INTERFACE:${rapidyaml_SOURCE_DIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    )
+    install(
+        TARGETS rapidyaml
+        EXPORT ${PROJECT_NAME}-targets
+    )
+endif()
