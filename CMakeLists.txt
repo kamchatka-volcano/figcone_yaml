@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(figcone_yaml VERSION 1.0.0 DESCRIPTION "rapidyaml parser adapter for figcone library")
+project(figcone_yaml VERSION 0.9.0 DESCRIPTION "rapidyaml parser adapter for figcone library")
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(FIGCONE_YAML_SUBPROJECT OFF)
@@ -8,7 +8,7 @@ else()
     set(FIGCONE_YAML_SUBPROJECT ON)
 endif()
 
-find_package(figcone_tree 1.0 QUIET)
+find_package(figcone_tree 0.9.0 QUIET)
 if (NOT figcone_tree_FOUND)
     message("Configuration info: figcone_tree library wasn't found on your system, downloading it from the GitHub repository")
     include (external/figcone_tree)
@@ -19,7 +19,7 @@ if (NOT rapidyaml_FOUND)
     #message("Configuration info: rapidyaml library wasn't found on your system, downloading it from the GitHub repository")
     #include(external/rapidyaml)
 
-    #until the single header version of rapidyaml is fixed in official repository
+    #until the single header version of rapidyaml is fixed in the official repository
     message("Configuration info: rapidyaml library wasn't found on your system, using a bundled version")
     set(INSTALL_RAPIDYAML ON)
     add_subdirectory(lib/rapidyaml)
