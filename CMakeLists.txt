@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(figcone_yaml VERSION 0.9.0 DESCRIPTION "rapidyaml parser adapter for figcone library")
+project(figcone_yaml VERSION 0.10.0 DESCRIPTION "rapidyaml parser adapter for figcone library")
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(FIGCONE_YAML_SUBPROJECT OFF)
@@ -8,33 +8,28 @@ else()
     set(FIGCONE_YAML_SUBPROJECT ON)
 endif()
 
-find_package(figcone_tree 0.9.0 QUIET)
+find_package(figcone_tree 0.10.0 QUIET)
 if (NOT figcone_tree_FOUND)
     message("Configuration info: figcone_tree library wasn't found on your system, downloading it from the GitHub repository")
     include (external/figcone_tree)
-endif()
-
-find_package(rapidyaml 0.4.1 QUIET)
-if (NOT rapidyaml_FOUND)
-    #message("Configuration info: rapidyaml library wasn't found on your system, downloading it from the GitHub repository")
-    #include(external/rapidyaml)
-
-    #until the single header version of rapidyaml is fixed in the official repository
-    message("Configuration info: rapidyaml library wasn't found on your system, using a bundled version")
-    set(INSTALL_RAPIDYAML ON)
-    add_subdirectory(lib/rapidyaml)
 endif()
 
 add_library(figcone_yaml INTERFACE)
 add_library(figcone::figcone_yaml ALIAS figcone_yaml)
 
 target_include_directories(
-        figcone_yaml
-        INTERFACE
-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    figcone_yaml
+    INTERFACE
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
-target_link_libraries(figcone_yaml INTERFACE figcone::figcone_tree rapidyaml::rapidyaml)
+target_include_directories(
+    figcone_yaml
+    INTERFACE
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include/figcone_yaml/detail/external>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/figcone_yaml/detail/external>
+)
+target_link_libraries(figcone_yaml INTERFACE figcone::figcone_tree)
 
 option(ENABLE_TESTS "Enable tests" OFF)
 if (ENABLE_TESTS AND NOT FIGCONE_YAML_SUBPROJECT)
