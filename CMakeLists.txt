@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 
 project(figcone_yaml VERSION 0.10.0 DESCRIPTION "rapidyaml parser adapter for figcone library")
+include(GNUInstallDirs)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(FIGCONE_YAML_SUBPROJECT OFF)
@@ -39,7 +40,6 @@ endif()
 
 option(INSTALL_FIGCONE_YAML "Install figcone_yaml library unconditionally" OFF)
 if (NOT FIGCONE_YAML_SUBPROJECT OR INSTALL_FIGCONE_YAML)
-    include(GNUInstallDirs)
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/figcone_yaml DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
     set(FIGCONE_YAML_PACK_PATH ${CMAKE_INSTALL_LIBDIR}/cmake/figcone_yaml)
