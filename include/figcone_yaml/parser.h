@@ -1,8 +1,8 @@
 #pragma once
+#include "detail/external/ryml_all.hpp"
 #include <figcone_tree/tree.h>
 #include <figcone_tree/iparser.h>
 #include <figcone_tree/errors.h>
-#include <ryml_all.hpp>
 #include <regex>
 
 #include <vector>
