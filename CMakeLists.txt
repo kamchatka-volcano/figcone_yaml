@@ -5,7 +5,7 @@ include(GNUInstallDirs)
 include(external/seal_lake)
 
 set(INSTALL_FIGCONE_TREE ON)
-SealLake_FindOrDownload(
+SealLake_Import(
         figcone_tree 0.11.0
         GIT_REPOSITORY https://github.com/kamchatka-volcano/figcone_tree.git
         GIT_TAG        cmake_maintenance
@@ -13,12 +13,11 @@ SealLake_FindOrDownload(
 
 SealLake_HeaderOnlyLibrary(
         NAMESPACE figcone
-        INCLUDES detail/external
-        BUILD_STAGE_INCLUDES detail/external
+        COMPILE_FEATURES cxx_std_17
         LIBRARIES figcone::figcone_tree
+        DEPENDENCIES
+            figcone_tree 0.11.0
 )
 
-SealLake_OptionalBuildSteps(
-        IF_ENABLED_AND_STANDALONE tests
-)
+SealLake_OptionalBuildSteps(tests)
 
