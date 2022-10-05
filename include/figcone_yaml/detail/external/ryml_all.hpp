@@ -1,5 +1,5 @@
-#ifndef _RYML_SINGLE_HEADER_AMALGAMATED_HPP_
-#define _RYML_SINGLE_HEADER_AMALGAMATED_HPP_
+#ifndef FIGCONE_RYML_SINGLE_HEADER_AMALGAMATED_HPP_
+#define FIGCONE_RYML_SINGLE_HEADER_AMALGAMATED_HPP_
 //
 // Rapid YAML - a library to parse and emit YAML, and do it fast.
 //
@@ -1660,18 +1660,18 @@ using index_sequence_for = make_index_sequence<sizeof...(_Tp)>;
 //********************************************************************************
 
 /* Copyright (c) 2011-2021, Scott Tsai
- * 
+ *
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice,
  *    this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -6598,9 +6598,9 @@ inline OStream& operator<< (OStream& os, basic_substring<C> s)
 // MIT License Notice
 //
 //    MIT License
-//    
+//
 //    Copyright (c) 2021 The fast_float authors
-//    
+//
 //    Permission is hereby granted, free of charge, to any
 //    person obtaining a copy of this software and associated
 //    documentation files (the "Software"), to deal in the
@@ -6610,11 +6610,11 @@ inline OStream& operator<< (OStream& os, basic_substring<C> s)
 //    the Software, and to permit persons to whom the Software
 //    is furnished to do so, subject to the following
 //    conditions:
-//    
+//
 //    The above copyright notice and this permission notice
 //    shall be included in all copies or substantial portions
 //    of the Software.
-//    
+//
 //    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
 //    ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
 //    TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -8077,9 +8077,9 @@ namespace detail {
  * where
  *   p = log(5**q)/log(2) = q * log(5)/log(2)
  *
- * For negative values of q in (-400,0), we have that 
+ * For negative values of q in (-400,0), we have that
  *  f = (((152170 + 65536) * q ) >> 16);
- * is equal to 
+ * is equal to
  *   -ceil(p) + q
  * where
  *   p = log(5**-q)/log(2) = -q * log(5)/log(2)
@@ -8150,7 +8150,7 @@ adjusted_mantissa compute_float(int64_t q, uint64_t w)  noexcept  {
     // In some very rare cases, this could happen, in which case we might need a more accurate
     // computation that what we can provide cheaply. This is very, very unlikely.
     //
-    const bool inside_safe_exponent = (q >= -27) && (q <= 55); // always good because 5**q <2**128 when q>=0, 
+    const bool inside_safe_exponent = (q >= -27) && (q <= 55); // always good because 5**q <2**128 when q>=0,
     // and otherwise, for q<0, we have 5**-q<2**64 and the 128-bit reciprocal allows for exact computation.
     if(!inside_safe_exponent) {
       return compute_error_scaled<binary>(q, product.high, lz);
@@ -30921,7 +30921,7 @@ inline size_t print_tree(Tree const& p, size_t node=NONE)
 #endif /* C4_YML_YML_HPP_ */
 
 
-namespace ryml {
+namespace figcone::yaml::ryml {
 using namespace c4::yml;
 using namespace c4;
 }
@@ -30931,5 +30931,5 @@ using namespace c4;
 
 // (end https://github.com/biojppm/rapidyaml/src/ryml.hpp)
 
-#endif /* _RYML_SINGLE_HEADER_AMALGAMATED_HPP_ */
+#endif /* FIGCONE_RYML_SINGLE_HEADER_AMALGAMATED_HPP_ */
 
