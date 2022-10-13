@@ -6,7 +6,7 @@ set(SRC
         test_paramlistparser.cpp
         test_nodeparser.cpp
         test_nodelistparser.cpp
-        yaml_impl.cpp)
+        )
 
 SealLake_GoogleTest(
         SOURCES ${SRC}

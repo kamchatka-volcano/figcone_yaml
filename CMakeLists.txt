@@ -11,10 +11,12 @@ SealLake_Import(
         GIT_TAG        cmake_maintenance
 )
 
-SealLake_HeaderOnlyLibrary(
+SealLake_ObjectLibrary(
         NAMESPACE figcone
         COMPILE_FEATURES cxx_std_17
-        LIBRARIES figcone::figcone_tree
+        SOURCES
+            src/parser.cpp
+        INTERFACE_LIBRARIES figcone::figcone_tree
         DEPENDENCIES
             figcone_tree 0.11.0
 )
