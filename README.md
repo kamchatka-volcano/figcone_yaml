@@ -1,3 +1,5 @@
+[![build & test (clang, gcc, MSVC)](https://github.com/kamchatka-volcano/figcone_yaml/actions/workflows/build_and_test.yml/badge.svg?branch=master)](https://github.com/kamchatka-volcano/figcone_yaml/actions/workflows/build_and_test.yml)
+
 **figcone_yaml** - is a [`rapidyaml`](https://github.com/biojppm/rapidyaml) configuration parser adapter for [`figcone`](https://github.com/kamchatka-volcano/figcone) library. 
 
 
