@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(figcone_yaml VERSION 0.12.0 DESCRIPTION "rapidyaml parser adapter for figcone library")
+project(figcone_yaml VERSION 0.12.1 DESCRIPTION "rapidyaml parser adapter for figcone library")
 include(GNUInstallDirs)
 include(external/seal_lake)
 

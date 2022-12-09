@@ -7,6 +7,8 @@
 #include <regex>
 #include <vector>
 #include <string>
+#include <iterator>
+
 
 namespace figcone::yaml::detail
 {
