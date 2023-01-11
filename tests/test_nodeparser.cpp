@@ -1,6 +1,6 @@
 #include "assert_exception.h"
-#include <figcone_yaml/parser.h>
 #include <figcone_tree/errors.h>
+#include <figcone_yaml/parser.h>
 #include <gtest/gtest.h>
 
 #include <sstream>
@@ -35,7 +35,6 @@ a:
     ASSERT_EQ(aNode.paramsCount(), 1);
     EXPECT_EQ(aNode.param("testInt").value(), "10");
 }
-
 
 TEST(TestNodeParser, SingleNodeOneDocument)
 {
@@ -129,4 +128,4 @@ b:
     EXPECT_EQ(bNode.param("testInt").value(), "9");
 }
 
-}
+} //namespace test_nodeparser

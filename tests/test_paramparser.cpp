@@ -1,6 +1,6 @@
 #include "assert_exception.h"
-#include <gtest/gtest.h>
 #include <figcone_yaml/parser.h>
+#include <gtest/gtest.h>
 #include <sstream>
 
 namespace test_paramparser {
@@ -34,4 +34,4 @@ test : ""
     EXPECT_EQ(tree.param("test").value(), "");
 }
 
-}
+} //namespace test_paramparser

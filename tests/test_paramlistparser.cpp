@@ -32,4 +32,4 @@ testIntList : [1, 2, 3]
     EXPECT_EQ(tree.param("testIntList").valueList(), (std::vector<std::string>{"1", "2", "3"}));
 }
 
-}
+} //namespace test_paramlistparser
