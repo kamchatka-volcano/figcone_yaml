@@ -27,10 +27,6 @@ void parseYaml(const ryml::ConstNodeRef& yaml, figcone::TreeNode& node)
     {
         return std::string{yamlstr.data(), yamlstr.size()};
     };
-    if (yaml.is_stream()) {
-        parseYaml(yaml[0], node);
-        return;
-    }
     for (const auto& child : yaml.children()) {
         if (child.is_map()) {
             auto& newNode = node.asItem().addNode(str(child.key()));
@@ -40,7 +36,7 @@ void parseYaml(const ryml::ConstNodeRef& yaml, figcone::TreeNode& node)
             if (child.has_children() && child.first_child().is_map()) {
                 auto& newNode = node.asItem().addNodeList(str(child.key()));
                 for (const auto& item : child.children())
-                    parseYaml(item, newNode.asList().addNode());
+                    parseYaml(item, newNode.asList().emplaceBack());
             }
             else {
                 auto valuesList = std::vector<std::string>{};
@@ -54,11 +50,24 @@ void parseYaml(const ryml::ConstNodeRef& yaml, figcone::TreeNode& node)
             node.asItem().addParam(str(child.key()), str(child.val()));
     }
 }
+
+void parseYamlList(const ryml::ConstNodeRef& yaml, figcone::TreeNode& nodeList)
+{
+    if (yaml.is_stream() || yaml.is_seq()) {
+        for (const auto& child : yaml.children()) {
+            auto& node = nodeList.asList().emplaceBack();
+            parseYaml(child, node);
+        }
+    }
+    else
+        parseYaml(yaml, nodeList.asList().emplaceBack());
+}
+
 } //namespace
 } //namespace figcone::yaml::detail
 
 namespace figcone::yaml {
-TreeNode Parser::parse(std::istream& stream)
+Tree Parser::parse(std::istream& stream)
 {
     stream >> std::noskipws;
 
@@ -67,8 +76,8 @@ TreeNode Parser::parse(std::istream& stream)
     ryml::set_callbacks(detail::errorCallback());
     yaml = ryml::parse_in_arena(ryml::to_csubstr(input));
 
-    auto tree = figcone::makeTreeRoot();
-    detail::parseYaml(yaml.rootref(), tree);
+    auto tree = figcone::makeTreeRootList();
+    detail::parseYamlList(yaml.rootref(), *tree);
 
     return tree;
 }
