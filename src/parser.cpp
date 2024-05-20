@@ -71,15 +71,15 @@ Tree Parser::parse(std::istream& stream)
 {
     stream >> std::noskipws;
 
-    auto input = std::string{std::istream_iterator<char>{stream}, std::istream_iterator<char>{}};
+    const auto input = std::string{std::istream_iterator<char>{stream}, std::istream_iterator<char>{}};
     auto yaml = ryml::Tree{};
     ryml::set_callbacks(detail::errorCallback());
     yaml = ryml::parse_in_arena(ryml::to_csubstr(input));
 
-    auto tree = figcone::makeTreeRootList();
-    detail::parseYamlList(yaml.rootref(), *tree);
+    auto treeRoot = figcone::makeTreeRootList();
+    detail::parseYamlList(yaml.rootref(), *treeRoot);
 
-    return tree;
+    return Tree{std::move(treeRoot)};
 }
 
 } //namespace figcone::yaml
