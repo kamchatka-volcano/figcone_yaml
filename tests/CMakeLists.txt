@@ -8,7 +8,11 @@ set(SRC
         test_nodelistparser.cpp
         )
 
-SealLake_GoogleTest(
+if(FIGCONE_YAML_TEST_RELEASE)
+        add_subdirectory(release)
+endif()
+
+SealLake_v040_GoogleTest(
         SOURCES ${SRC}
         COMPILE_FEATURES cxx_std_17
         PROPERTIES
